@@ -30,7 +30,7 @@ public class GeneroControlador {
     @PostMapping
     public String guardarGenero(@ModelAttribute("genero") Genero genero) {
         generoServicio.guardar(genero);
-        return "redirect:/generos/";
+        return "redirect:/generos";
     }
 
     @GetMapping("/editar/{id}")

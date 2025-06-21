@@ -7,18 +7,7 @@ function eliminar(id) {
     dangerMode: true,
   }).then((willDelete) => {
     if (willDelete) {
-      $.ajax({
-        url: "/generos/" + id,
-        type: "GET",
-        success: function (res) {
-          swal("Género eliminado con éxito", { icon: "success" }).then(() => {
-            location.href = "/generos";
-          });
-        },
-        error: function (xhr, status, error) {
-          swal("Error al eliminar el género", { icon: "error" });
-        }
-      });
+      window.location.href = "/generos/eliminar/" + id;
     }
   });
 }
