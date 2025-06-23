@@ -1,9 +1,10 @@
-package com.miercoles.crud.servicio;
+package com.cine.crud.servicio;
 
-import com.miercoles.crud.modelo.Genero;
-import com.miercoles.crud.repositorio.GeneroRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.cine.crud.modelo.Genero;
+import com.cine.crud.repositorio.GeneroRepositorio;
 
 import java.util.List;
 

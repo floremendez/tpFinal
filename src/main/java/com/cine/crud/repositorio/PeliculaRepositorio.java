@@ -1,8 +1,9 @@
-package com.miercoles.crud.repositorio;
+package com.cine.crud.repositorio;
 
-import com.miercoles.crud.modelo.Pelicula;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import com.cine.crud.modelo.Pelicula;
 
 @Repository
 public interface PeliculaRepositorio extends JpaRepository<Pelicula, Integer> {

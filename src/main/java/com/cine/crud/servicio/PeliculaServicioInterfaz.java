@@ -1,7 +1,8 @@
-package com.miercoles.crud.servicio;
+package com.cine.crud.servicio;
 
-import com.miercoles.crud.modelo.Pelicula;
 import java.util.List;
+
+import com.cine.crud.modelo.Pelicula;
 
 public interface PeliculaServicioInterfaz {
     List<Pelicula> obtenerTodos();

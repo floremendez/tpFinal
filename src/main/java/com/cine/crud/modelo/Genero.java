@@ -1,4 +1,4 @@
-package com.miercoles.crud.modelo;
+package com.cine.crud.modelo;
 
 import java.util.List;
 

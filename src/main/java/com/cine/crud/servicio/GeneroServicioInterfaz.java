@@ -1,7 +1,8 @@
-package com.miercoles.crud.servicio;
+package com.cine.crud.servicio;
 
-import com.miercoles.crud.modelo.Genero;
 import java.util.List;
+
+import com.cine.crud.modelo.Genero;
 
 public interface GeneroServicioInterfaz {
     List<Genero> obtenerTodos();

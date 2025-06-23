@@ -1,14 +1,14 @@
-package com.miercoles.crud.controlador;
-
-import com.miercoles.crud.modelo.Genero;
-import com.miercoles.crud.modelo.Pelicula;
-import com.miercoles.crud.servicio.GeneroServicioInterfaz;
-import com.miercoles.crud.servicio.PeliculaServicioInterfaz;
+package com.cine.crud.controlador;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import com.cine.crud.modelo.Genero;
+import com.cine.crud.modelo.Pelicula;
+import com.cine.crud.servicio.GeneroServicioInterfaz;
+import com.cine.crud.servicio.PeliculaServicioInterfaz;
 
 import java.util.List;
 
@@ -22,7 +22,6 @@ public class PeliculaControlador {
     @Autowired
     private GeneroServicioInterfaz generoServicio;
 
-    // Mostrar todas las películas
     @GetMapping
     public String listarPeliculas(Model modelo) {
         List<Pelicula> peliculas = peliculaServicio.obtenerTodos();
@@ -34,7 +33,6 @@ public class PeliculaControlador {
         return "index";
     }
 
-    // Mostrar formulario de creación
     @GetMapping("/nuevo")
     public String mostrarFormularioDeCreacion(Model model) {
         model.addAttribute("pelicula", new Pelicula());
@@ -42,14 +40,12 @@ public class PeliculaControlador {
         return "peliculas/crear_pelicula";
     }
 
-    // Guardar nueva película
     @PostMapping
     public String guardarPelicula(@ModelAttribute("pelicula") Pelicula pelicula) {
         peliculaServicio.guardar(pelicula);
         return "redirect:/peliculas";
     }
 
-    // Mostrar formulario de edición
     @GetMapping("/editar/{id}")
     public String editarPelicula(@PathVariable Integer id, Model model) {
         Pelicula pelicula = peliculaServicio.obtenerPorId(id);
@@ -63,7 +59,6 @@ public class PeliculaControlador {
         return "peliculas/crear_pelicula";
     }
 
-    // Actualizar película existente
     @PostMapping("/{id}")
     public String actualizarPelicula(@PathVariable Integer id, @ModelAttribute("pelicula") Pelicula pelicula) {
         pelicula.setId(id);
@@ -71,7 +66,6 @@ public class PeliculaControlador {
         return "redirect:/peliculas";
     }
 
-    // Eliminar película
     @GetMapping("/eliminar/{id}")
     public String eliminarPelicula(@PathVariable Integer id) {
         peliculaServicio.eliminar(id);

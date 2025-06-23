@@ -1,10 +1,12 @@
-package com.miercoles.crud.controlador;
+package com.cine.crud.controlador;
 
-import com.miercoles.crud.modelo.Genero;
-import com.miercoles.crud.servicio.GeneroServicioInterfaz;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import com.cine.crud.modelo.Genero;
+import com.cine.crud.servicio.GeneroServicioInterfaz;
+
 import org.springframework.ui.Model;
 import java.util.List;
 
