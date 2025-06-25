@@ -1,17 +1,14 @@
-/* Fondo general y tipografía */
 body {
     background-color: #f7f2fa;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #333;
 }
 
-/* Títulos */
 h1, h2, h3 {
     color: #5a2a83;
     font-weight: 600;
 }
 
-/* Contenedor principal */
 .container {
     max-width: 1400px;
 }
@@ -21,7 +18,7 @@ h1, h2, h3 {
     color: #5a2a83;
 }
 
-/* Tarjeta blanca para formularios */
+
 .card {
     background-color: #fff;
     border: 1px solid #d6c6e1;
@@ -30,7 +27,7 @@ h1, h2, h3 {
     padding: 2rem;
 }
 
-/* Etiquetas y campos */
+
 .form-label {
     font-weight: 500;
     color: #5a2a83;
@@ -42,13 +39,13 @@ h1, h2, h3 {
     padding: 10px;
 }
 
-/* Mensajes de error */
+
 .text-danger {
     font-size: 0.9rem;
     margin-top: 4px;
 }
 
-/* Estilo base para todos los botones */
+
 .btn {
     font-weight: 500;
     padding: 10px 20px;
@@ -56,7 +53,7 @@ h1, h2, h3 {
     transition: all 0.3s ease;
 }
 
-/* Botón principal: violeta profundo */
+
 .btn-primary {
     background-color: #7a45b3;
     color: white;
@@ -67,7 +64,7 @@ h1, h2, h3 {
     background-color: #682da5;
 }
 
-/* Botón secundario: borde violeta */
+
 .btn-outline-primary {
     border: 2px solid #7a45b3;
     color: #7a45b3;
@@ -79,7 +76,7 @@ h1, h2, h3 {
     color: white;
 }
 
-/* Grupo de botones sin espacios excesivos */
+
 .btn-group {
     display: flex;
     gap: 10px;
@@ -88,7 +85,7 @@ h1, h2, h3 {
     margin-top: 1.5rem;
 }
 
-/* Alineación de campos de formulario */
+
 .text-start {
     text-align: left;
 }
