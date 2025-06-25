@@ -3,12 +3,15 @@ package com.cine.crud.controlador;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import com.cine.crud.modelo.Genero;
 import com.cine.crud.modelo.Pelicula;
 import com.cine.crud.servicio.GeneroServicioInterfaz;
 import com.cine.crud.servicio.PeliculaServicioInterfaz;
+
+import jakarta.validation.Valid;
 
 import java.util.List;
 
@@ -41,7 +44,12 @@ public class PeliculaControlador {
     }
 
     @PostMapping
-    public String guardarPelicula(@ModelAttribute("pelicula") Pelicula pelicula) {
+    public String guardarPelicula(@Valid @ModelAttribute("pelicula") Pelicula pelicula,
+            BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("generos", generoServicio.obtenerTodos());
+            return "peliculas/crear_pelicula";
+        }
         peliculaServicio.guardar(pelicula);
         return "redirect:/peliculas";
     }
@@ -60,7 +68,12 @@ public class PeliculaControlador {
     }
 
     @PostMapping("/{id}")
-    public String actualizarPelicula(@PathVariable Integer id, @ModelAttribute("pelicula") Pelicula pelicula) {
+    public String actualizarPelicula(@PathVariable Integer id, @Valid @ModelAttribute("pelicula") Pelicula pelicula,
+            BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("generos", generoServicio.obtenerTodos());
+            return "peliculas/crear_pelicula";
+        }
         pelicula.setId(id);
         peliculaServicio.guardar(pelicula);
         return "redirect:/peliculas";

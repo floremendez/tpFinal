@@ -7,7 +7,11 @@ import org.springframework.web.bind.annotation.*;
 import com.cine.crud.modelo.Genero;
 import com.cine.crud.servicio.GeneroServicioInterfaz;
 
+import jakarta.validation.Valid;
+
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+
 import java.util.List;
 
 @Controller
@@ -30,7 +34,11 @@ public class GeneroControlador {
     }
 
     @PostMapping
-    public String guardarGenero(@ModelAttribute("genero") Genero genero) {
+    public String guardarGenero(@Valid @ModelAttribute("genero") Genero genero,
+            BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "generos/crear_genero";
+        }
         generoServicio.guardar(genero);
         return "redirect:/generos";
     }
@@ -41,10 +49,14 @@ public class GeneroControlador {
         return "generos/editar_genero";
     }
 
-    @PostMapping("/{id}")
-    public String actualizarGenero(@PathVariable Integer id, @ModelAttribute("genero") Genero genero) {
-        genero.setId(id);
-        generoServicio.guardar(genero);
+    @PostMapping("{id}")
+    public String actualizarGenero(@Valid @ModelAttribute("genero") Genero genero,
+            BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "generos/editar_genero";
+        }
+
+        generoServicio.guardar(genero); // o actualizar si tenés lógica distinta
         return "redirect:/generos";
     }
 

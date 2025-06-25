@@ -1,8 +1,7 @@
 package com.cine.crud.modelo;
 
-import java.util.List;
-
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 @Entity
 @Table(name = "peliculas")
@@ -12,26 +11,33 @@ public class Pelicula {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotBlank(message = "El título es obligatorio")
+    @Size(max = 40, message = "El título no puede superar los 40 caracteres")
     @Column(name = "titulo", nullable = false, length = 40)
     private String titulo;
 
+    @NotBlank(message = "El director es obligatorio")
+    @Size(max = 30, message = "El director no puede superar los 30 caracteres")
     @Column(name = "director", nullable = false, length = 30)
     private String director;
 
+    @NotBlank(message = "El protagonista es obligatorio")
+    @Size(max = 30, message = "El protagonista no puede superar los 30 caracteres")
     @Column(name = "protagonista", nullable = false, length = 30)
     private String protagonista;
 
-    @Column(name = "anio", nullable = false)
+    @NotNull(message = "El año es obligatorio")
+    @Min(value = 1888, message = "El año debe ser posterior a 1888")
+    @Max(value = 2100, message = "El año no puede superar 2100")
     private Integer anio;
 
+    @NotNull(message = "Debe seleccionar un género")
     @ManyToOne
     @JoinColumn(name = "genero_id", nullable = false)
     private Genero genero;
 
-
-    
-
-    public Pelicula() {}
+    public Pelicula() {
+    }
 
     public Pelicula(String titulo, String director, String protagonista, Integer anio) {
         this.titulo = titulo;
@@ -39,7 +45,7 @@ public class Pelicula {
         this.protagonista = protagonista;
         this.anio = anio;
     }
-    
+
     public Integer getId() {
         return id;
     }
@@ -79,23 +85,23 @@ public class Pelicula {
     public void setAnio(Integer anio) {
         this.anio = anio;
     }
+
     public Genero getGenero() {
-            return genero;
-        }
+        return genero;
+    }
 
-        public void setGenero(Genero genero) {
-            this.genero = genero;
-        }
-
+    public void setGenero(Genero genero) {
+        this.genero = genero;
+    }
 
     @Override
     public String toString() {
         return "Pelicula{" +
-               "id=" + id +
-               ", titulo='" + titulo + '\'' +
-               ", director='" + director + '\'' +
-               ", protagonista='" + protagonista + '\'' +
-               ", anio=" + anio +
-               '}';
+                "id=" + id +
+                ", titulo='" + titulo + '\'' +
+                ", director='" + director + '\'' +
+                ", protagonista='" + protagonista + '\'' +
+                ", anio=" + anio +
+                '}';
     }
 }
