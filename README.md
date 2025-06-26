@@ -1,6 +1,6 @@
 # 🎬 Gestión de Películas - Spring Boot
 
-Aplicación web desarrollada con Spring Boot para gestionar un catálogo de películas con sus respectivos géneros. Permite realizar operaciones CRUD sobre las tablas `peliculas` y `generos`.
+Aplicación web desarrollada con Spring Boot para gestionar un catálogo de películas y sus géneros. Permite realizar operaciones CRUD completas sobre las tablas `peliculas` y `generos`.
 
 Este proyecto fue realizado como parte del Trabajo Práctico N.º 6 de la materia **Laboratorio de Programación (2025)**.
 
@@ -8,25 +8,26 @@ Este proyecto fue realizado como parte del Trabajo Práctico N.º 6 de la materi
 
 ## 📌 Funcionalidades principales
 
-- ✅ Listado de películas con su género asociado
+- ✅ Listado de películas con su género
 - ✅ Alta, edición y eliminación de películas
-- ✅ Gestión de géneros (alta, edición, baja)
-- ✅ Validación de formularios
-- ✅ Conexión a base de datos MariaDB
+- ✅ Gestión de géneros (alta, edición, eliminación)
+- ✅ Validaciones en los formularios
+- ✅ Visualización de los datos en PhpMyAdmin
 
 ---
 
 ## 🧱 Estructura del proyecto
 
-El proyecto sigue la arquitectura MVC (Modelo-Vista-Controlador):
+El proyecto sigue el patrón MVC (Modelo - Vista - Controlador) y está dividido en capas:
 
-| Capa         | Contenido                                                                 |
-|--------------|--------------------------------------------------------------------------|
-| `modelo`     | Clases `Pelicula` y `Genero`, mapeadas con JPA y validaciones de datos   |
-| `repositorio`| Interfaces `PeliculaRepositorio` y `GeneroRepositorio` con Spring Data JPA |
-| `controlador`| Lógica de negocio: `PeliculaControlador` y `GeneroControlador`           |
-| `templates`  | Vistas Thymeleaf para CRUD de películas y géneros                        |
-| `resources`  | Configuración (`application.properties`)                                 |
+| Capa          | Descripción                                                                 |
+|---------------|------------------------------------------------------------------------------|
+| `modelo`      | Entidades `Pelicula` y `Genero`, mapeadas con JPA y anotaciones de validación |
+| `repositorio` | Interfaces `PeliculaRepositorio` y `GeneroRepositorio` que extienden `JpaRepository` |
+| `servicio`    | Lógica de negocio y conexión entre controlador y repositorio (`PeliculaServicio`, `GeneroServicio`) |
+| `controlador` | Clases que manejan las rutas y la lógica del usuario (`PeliculaControlador`, `GeneroControlador`) |
+| `templates`   | Páginas HTML con Thymeleaf para mostrar formularios, listas, etc.           |
+| `resources`   | Configuración en `application.properties` y archivos estáticos si es necesario |
 
 ---
 
@@ -43,30 +44,32 @@ El proyecto sigue la arquitectura MVC (Modelo-Vista-Controlador):
 
 ## 🗃️ Base de datos
 
-Base de datos: `cine`  
-Tablas utilizadas:
+**Nombre de la base:** `cine`  
+Tablas incluidas:
 
-### 🎬 peliculas
+### 🎬 Tabla `peliculas`
 
-| Campo         | Tipo     | Longitud | Notas                 |
-|---------------|----------|----------|------------------------|
-| id            | Numérico | 5        | Autogenerado           |
-| titulo        | Texto    | 40       | Obligatorio            |
-| director      | Texto    | 30       | Obligatorio            |
-| protagonista  | Texto    | 30       | Obligatorio            |
-| anio          | Numérico | 4        | Entre 1888 y 2100      |
-| genero_id     | FK       | -        | Relación con `generos` |
+| Campo         | Tipo     | Longitud | Notas                               |
+|---------------|----------|----------|--------------------------------------|
+| id            | Numérico | 5        | Clave primaria, autogenerado        |
+| titulo        | Texto    | 40       | Obligatorio, con validación         |
+| director      | Texto    | 30       | Obligatorio                         |
+| protagonista  | Texto    | 30       | Obligatorio                         |
+| anio          | Numérico | 4        | Rango entre 1888 y 2100             |
+| genero_id     | FK       | -        | Relación con la tabla `generos`     |
 
-### 🗂️ generos
+### 🗂️ Tabla `generos`
 
 | Campo  | Tipo     | Longitud | Notas          |
 |--------|----------|----------|----------------|
-| id     | Numérico | 5        | Autogenerado   |
+| id     | Numérico | 5        | Clave primaria |
 | nombre | Texto    | 30       | Obligatorio    |
 
 ---
 
-## ⚙️ Configuración (application.properties)
+## ⚙️ Configuración
+
+Archivo `src/main/resources/application.properties`:
 
 ```properties
 spring.datasource.url=jdbc:mariadb://localhost:3306/cine
