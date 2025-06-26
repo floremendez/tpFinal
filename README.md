@@ -27,7 +27,7 @@ El proyecto sigue el patrón MVC (Modelo - Vista - Controlador) y está dividido
 | `servicio`    | Lógica de negocio y conexión entre controlador y repositorio (`PeliculaServicio`, `GeneroServicio`) |
 | `controlador` | Clases que manejan las rutas y la lógica del usuario (`PeliculaControlador`, `GeneroControlador`) |
 | `templates`   | Páginas HTML con Thymeleaf para mostrar formularios, listas, etc.           |
-| `resources`   | Configuración en `application.properties` y archivos estáticos si es necesario |
+| `resources`   | Configuración en `application.properties`|
 
 ---
 
